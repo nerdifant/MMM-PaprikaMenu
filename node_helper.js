@@ -164,24 +164,9 @@ module.exports = NodeHelper.create({
     },
 
     getFirstDayOfWeek: function(weekStartsOnSunday) {
-        var today = moment();
-        var firstDayOfWeek = moment();
-
-        // moment.isoWeekday() returns 1 for Monday, 7 for Sunday.
-        if (weekStartsOnSunday) {
-            var weekday = today.isoWeekday();
-
-            if (weekday == 7) {
-                firstDayOfWeek = today;
-            } else {
-                firstDayOfWeek = today.subtract(weekday, 'days');
-            }
-        } else {
-            var weekStartedDaysAgo = today.isoWeekday() - 1;
-            firstDayOfWeek = today.subtract(weekStartedDaysAgo, 'days');
-        }
-
-        return firstDayOfWeek.startOf('day');
+	return moment()
+		    .subtract(1, 'days')
+		    .startOf('day');
     },
 
     constructMealObject: function(mealFromApi) {
